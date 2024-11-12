@@ -46,7 +46,7 @@ class Name(Field):
 
 class Phone(Field):
     def __init__(self, value: str):
-        if len(value) != 3 or not all(c.isdigit() for c in value):
+        if len(value) != 10 or not all(c.isdigit() for c in value):
             raise FieldFormatError("Must be exactly 10 digits.")
         super().__init__(value)
 
@@ -180,7 +180,7 @@ def validate_arguments(args, expected):
 
 
 def validate_phone(value):
-    if len(value) != 3 or not all(c.isdigit() for c in value):
+    if len(value) != 10 or not all(c.isdigit() for c in value):
         raise ValueError(f"Phone number format 10 digits: expected='XXXXXXXXXX', provided='{value}'.")
     
 
