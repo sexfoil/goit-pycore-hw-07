@@ -1,4 +1,3 @@
-import re
 from collections import UserDict
 from datetime import datetime, timedelta
 
@@ -259,6 +258,10 @@ def show_birthday(args, book: AddressBook):
 
 
 def show_all(book: AddressBook):
+    if not book.values():
+        print("There are no contacts.")
+        return
+    
     size = max(len(record.phones_info()) for record in book.values()) + 4
     dash_row = "-" * (size * 2 + 1)
     header = [dash_row, f"{'NAME':^{size}}|{'PHONE':^{size}}", dash_row]
@@ -274,11 +277,7 @@ def show_upcoming_bitrhdays(book: AddressBook):
 
 
 def main():
-    slava: Record = Record('slava')
-    slava.add_phone("123")
-    slava.add_birthday("14.11.1978")
     address_book = AddressBook()
-    address_book.add_record(slava)
     print("Welcome to the assistant bot!")
             
     while True:
